@@ -49,3 +49,14 @@ harris <- get_decennial(
 
 head(harris)
 ```
+
+```{r}
+harris %>%
+  mutate(percent = 100 * (value / summary_value)) %>%
+  ggplot(aes(fill = percent)) +
+  facet_wrap(~variable) +
+  geom_sf(color = NA) +
+  theme_void() + 
+  scale_fill_viridis_c() + 
+  labs(fill = "% of population\n(2020 Census)")
+```
