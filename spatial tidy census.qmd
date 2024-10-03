@@ -29,3 +29,23 @@ orange %>%
 ```
 
 hi
+
+```{r}
+racevars <- c(White = "P2_005N", 
+              Black = "P2_006N", 
+              Asian = "P2_008N", 
+              Hispanic = "P2_002N")
+
+harris <- get_decennial(
+  geography = "tract",
+  variables = racevars,
+  state = "TX",
+  county = "Harris County",
+  geometry = TRUE,
+  summary_var = "P2_001N",
+  year = 2020,
+  sumfile = "pl"
+) 
+
+head(harris)
+```
