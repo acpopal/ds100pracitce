@@ -1,0 +1,29 @@
+---
+title: "spatial tidy census"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidycensus)
+library(tidyverse)
+options(tigris_use_cache = TRUE)
+
+orange <- get_acs(
+  state = "CA",
+  county = "Orange",
+  geography = "tract",
+  variables = "B19013_001",
+  geometry = TRUE,
+  year = 2020
+)
+
+head(orange)
+```
+
+```{r}
+orange %>%
+  ggplot(aes(fill = estimate)) + 
+  geom_sf(color = NA) + 
+  scale_fill_viridis_c(option = "magma") 
+```
